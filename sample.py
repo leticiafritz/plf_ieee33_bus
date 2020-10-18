@@ -1,6 +1,7 @@
 # ---------- BIBLIOTECAS ----------
 import numpy as np
 import scipy.stats as ss
+import matplotlib.pyplot as plt
 
 # ---------- VARIAVEIS GLOBAIS ----------
 # VARIAVEIS GLOBAIS PARA FDP
@@ -23,12 +24,10 @@ class Sample:
         self.load = load
 
     # FUNÇÃO DE POTÊCIA GERADA DA PV
-    @staticmethod
-    def get_pv_sample():
+    def get_pv_sample(self):
         # Função de distribuição de probabilidade da radiação solar
-        radiation = ss.beta.pdf(np.linspace(1, 1, 24), ALFA_PV, BETA_PV, 0, 1)  # beta [Yaotang, 2016]
+        radiation = ss.beta.pdf(np.linspace(0, 1, 24), ALFA_PV, BETA_PV, 0, 1)  # beta [Yaotang, 2016]
         radiation = radiation * R_FACTOR
-
         # Configurando a curva da potência gerada kW
         pv = [0] * 24
         for n in range(np.size(pv)):
@@ -42,10 +41,9 @@ class Sample:
         return pv
 
     # FUNÇÃO DE ESTADO DA CARGA DO EV
-    @staticmethod
-    def get_ev_curve():
+    def get_ev_curve(self):
         # Distribuição de probabilidade acumulativa da distância percorrida pelo carro
-        x = np.linspace(1, 24, 100)
+        x = np.linspace(0, 24, 100)
         dist = ss.lognorm.cdf(x, SD_EV, scale=MU_EV)
 
         # Estado de carga da bateria antes de descarregar
@@ -71,6 +69,7 @@ class Sample:
     def get_load_sample(self):
         # Carga
         load = np.random.normal(self.load, SD_LOAD)  # distribuição normal [Morshed, 2018]  [Unidade: kWh]
+
         return load
 
 

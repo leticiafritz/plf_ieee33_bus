@@ -23,6 +23,7 @@ class DSS:
             self.dssLoads = self.dssCircuit.Loads
             self.dssLoadShapes = self.dssCircuit.LoadShapes
             self.dssTransformers = self.dssCircuit.Transformers
+            self.dssGenerators = self.dssCircuit.Generators
 
     # Função que retorna a versão
     def versao_dss(self):
