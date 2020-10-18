@@ -36,11 +36,19 @@ class DSS:
         # Compilando arquivo com informações da rede
         self.dssText.Command = "compile " + self.path_dss
 
+        # Acrescentando o Energymeter
+        self.dssText.Command = "New Energymeter.M1  Line.L1  1"
+
     # Função que roda o fluxo de potência
-    def solve_dss(self):
+    def solve_dss(self, mode):
         # Configurações da solução
-        self.dssText.Command = "Set Mode=SnapShot"
-        self.dssText.command = "Set ControlMode=Static"
+        if mode == "snapshot":
+            self.dssText.Command = "Set Mode=snapshot"
+            self.dssText.Command = "Set ControlMode=Static"
+        elif mode == "daily":
+            self.dssText.Command = "Set Mode=daily"
+            self.dssText.Command = "Set stepsize=1h"
+            self.dssText.Command = "Set number=24"
         self.dssSolution.Solve()
 
     # ---------- GET CIRCUIT ----------
@@ -119,6 +127,11 @@ class DSS:
     # Função que retorna a lista de cargas do circuito
     def get_all_load_names(self):
         return self.dssLoads.AllNames
+
+    # ---------- GET CIRCUIT LOADS ----------
+    # Função que retorna a lista de cargas do circuito
+    def get_all_loadshapes_names(self):
+        return self.dssLoadShapes.AllNames
 
     # ---------- GET CIRCUIT TRAFO ----------
     # Função que retorna o nome do transformador
