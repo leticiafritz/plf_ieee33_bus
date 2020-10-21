@@ -1,0 +1,8 @@
+SetProp, 1E050,   -1E050, 1E050, -1E050, 16777215, 16777215, 0, 4
+Caption, "Loadshape.LoadShape_ev_840"
+ChartCaption, "Loadshape = LoadShape_ev_840"
+Xlabel, "Hours"
+Ylabel, "p.u."
+Curve, 24, 16711680, 1, 0, 0, 1, "LoadShape_ev_840", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0
+KeepAspect, 0
+PctRim, 2

@@ -1,5 +1,6 @@
 # ---------- BIBLIOTECAS ----------
 import win32com.client
+#import dss
 
 
 class DSS:
@@ -8,6 +9,7 @@ class DSS:
 
         # Criar a conexão entre Python e OpenDSS
         self.dssObj = win32com.client.Dispatch("OpenDSSEngine.DSS")
+        #self.dssObj = dss.DSS
 
         # Iniciar o Objeto DSS
         if not self.dssObj.Start(0):
